@@ -1,5 +1,5 @@
 
-    name: Build dylib
+ name: Build dylib
 
 on:
   push:
@@ -10,7 +10,7 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Compile dylib
@@ -21,6 +21,7 @@ jobs:
           -framework Foundation \
           -framework CoreGraphics \
           -framework QuartzCore \
+          -fobjc-arc \
           menu.m -o ModernMenu.dylib
 
       - name: Upload dylib
@@ -28,3 +29,4 @@ jobs:
         with:
           name: compiled-dylib
           path: ModernMenu.dylib
+
