@@ -1,5 +1,4 @@
-
- name: Build dylib
+name: Build dylib
 
 on:
   push:
@@ -29,4 +28,3 @@ jobs:
         with:
           name: compiled-dylib
           path: ModernMenu.dylib
-
