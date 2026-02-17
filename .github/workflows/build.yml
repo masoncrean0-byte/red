@@ -1,4 +1,5 @@
-name: Build dylib
+
+    name: Build dylib
 
 on:
   push:
@@ -9,14 +10,17 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Compile dylib
         run: |
           clang -dynamiclib -arch arm64 \
           -isysroot $(xcrun --sdk iphoneos --show-sdk-path) \
-          -framework UIKit -framework Foundation \
+          -framework UIKit \
+          -framework Foundation \
+          -framework CoreGraphics \
+          -framework QuartzCore \
           menu.m -o ModernMenu.dylib
 
       - name: Upload dylib
